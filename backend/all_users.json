@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "6996b2133e7106d967545421",
+    "name": "keshav patil",
+    "email": "keshav@gmail.com",
+    "role": "vendor",
+    "createdAt": "2026-02-19T06:47:47.359Z"
+  },
+  {
+    "_id": "6996edeb113ae9aa738c1520",
+    "name": "ketan1@gmail.com",
+    "email": "ketan@gmail.com",
+    "role": "customer",
+    "createdAt": "2026-02-19T11:03:07.078Z"
+  },
+  {
+    "_id": "6996f1dfa36e46c2fc16c5d5",
+    "name": "keshav patil",
+    "email": "keshav1@gmail.com",
+    "role": "vendor",
+    "createdAt": "2026-02-19T11:19:59.279Z"
+  },
+  {
+    "_id": "6998216f4fabd00969cbd067",
+    "name": "keshav patel",
+    "email": "keshav12@gmail.com",
+    "role": "vendor",
+    "createdAt": "2026-02-20T08:55:11.317Z"
+  }
+]

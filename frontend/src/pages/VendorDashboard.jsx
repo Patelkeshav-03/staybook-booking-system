@@ -177,7 +177,7 @@ const VendorDashboard = () => {
                 <h1 className="dashboard-title">Dashboard Overview</h1>
                 <div className="vendor-profile">
                     <FaUserCircle size={24} />
-                    <span>Vendor Admin</span>
+                    <span style={{ fontWeight: '700' }}>Vendor Admin</span>
                 </div>
             </div>
 
@@ -559,7 +559,7 @@ const VendorDashboard = () => {
                     <form onSubmit={handleFormSubmit}>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                             <div className="form-group">
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#1e293b' }}>Hotel Name</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Hotel Name</label>
                                 <input
                                     type="text"
                                     value={hotelForm.name}
@@ -570,7 +570,7 @@ const VendorDashboard = () => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#1e293b' }}>Location</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Location</label>
                                 <input
                                     type="text"
                                     value={hotelForm.location}
@@ -583,7 +583,7 @@ const VendorDashboard = () => {
                         </div>
 
                         <div className="form-group" style={{ marginTop: '20px' }}>
-                            <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#1e293b' }}>Description</label>
+                            <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Description</label>
                             <textarea
                                 value={hotelForm.description}
                                 onChange={(e) => setHotelForm({ ...hotelForm, description: e.target.value })}
@@ -596,7 +596,7 @@ const VendorDashboard = () => {
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '20px' }}>
                             <div className="form-group">
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#1e293b' }}>Amenities (comma separated)</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Amenities (comma separated)</label>
                                 <textarea
                                     value={hotelForm.amenities}
                                     onChange={(e) => setHotelForm({ ...hotelForm, amenities: e.target.value })}
@@ -606,7 +606,7 @@ const VendorDashboard = () => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#1e293b' }}>Image URLs (comma separated)</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Image URLs (comma separated)</label>
                                 <textarea
                                     value={hotelForm.images}
                                     onChange={(e) => setHotelForm({ ...hotelForm, images: e.target.value })}
@@ -619,7 +619,7 @@ const VendorDashboard = () => {
 
                         {editingId && (
                             <div className="form-group" style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <label style={{ fontWeight: '500' }}>Active Status:</label>
+                                <label style={{ fontWeight: '700', color: '#1e293b' }}>Active Status:</label>
                                 <button
                                     type="button"
                                     onClick={() => setHotelForm({ ...hotelForm, isActive: !hotelForm.isActive })}
@@ -787,7 +787,7 @@ const VendorDashboard = () => {
             ) : (
                 <>
                     <div style={{ background: 'white', borderRadius: '12px', padding: '20px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)', marginBottom: '20px' }}>
-                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155' }}>Select Hotel</label>
+                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Select Hotel</label>
                         <select
                             value={selectedHotelId}
                             onChange={(e) => {
@@ -810,7 +810,7 @@ const VendorDashboard = () => {
                         <form onSubmit={handleRoomSubmit}>
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '15px' }}>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Room Type</label>
+                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Room Type</label>
                                     <select
                                         value={roomForm.type}
                                         onChange={(e) => setRoomForm({ ...roomForm, type: e.target.value })}
@@ -823,7 +823,7 @@ const VendorDashboard = () => {
                                 </div>
 
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Price</label>
+                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Price</label>
                                     <input
                                         type="number"
                                         min="1"
@@ -836,7 +836,7 @@ const VendorDashboard = () => {
                                 </div>
 
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Room Capacity</label>
+                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Room Capacity</label>
                                     <input
                                         type="number"
                                         min="1"
@@ -849,7 +849,7 @@ const VendorDashboard = () => {
                                 </div>
 
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Quantity Available</label>
+                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Quantity Available</label>
                                     <input
                                         type="number"
                                         min="1"
@@ -862,7 +862,7 @@ const VendorDashboard = () => {
                                 </div>
 
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Current Availability</label>
+                                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Current Availability</label>
                                     <input
                                         type="number"
                                         min="0"
@@ -953,7 +953,7 @@ const VendorDashboard = () => {
                 <h3 style={{ marginBottom: '15px' }}>Filters</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '15px' }}>
                     <div>
-                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>From Date</label>
+                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>From Date</label>
                         <input
                             type="date"
                             value={bookingFilters.fromDate}
@@ -963,7 +963,7 @@ const VendorDashboard = () => {
                     </div>
 
                     <div>
-                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>To Date</label>
+                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>To Date</label>
                         <input
                             type="date"
                             value={bookingFilters.toDate}
@@ -973,7 +973,7 @@ const VendorDashboard = () => {
                     </div>
 
                     <div>
-                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Status</label>
+                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Status</label>
                         <select
                             value={bookingFilters.status}
                             onChange={(e) => setBookingFilters({ ...bookingFilters, status: e.target.value })}
@@ -1089,19 +1089,19 @@ const VendorDashboard = () => {
                     <form onSubmit={handleProfileSave}>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '15px' }}>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Name</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Name</label>
                                 <input type="text" value={profileForm.name} onChange={(e) => setProfileForm({ ...profileForm, name: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Email</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Email</label>
                                 <input type="email" value={profileForm.email} onChange={(e) => setProfileForm({ ...profileForm, email: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Phone</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Phone</label>
                                 <input type="text" value={profileForm.phone} onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Company Name</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Company Name</label>
                                 <input type="text" value={profileForm.companyName} onChange={(e) => setProfileForm({ ...profileForm, companyName: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                         </div>
@@ -1116,15 +1116,15 @@ const VendorDashboard = () => {
                     <form onSubmit={handlePasswordChange}>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '15px' }}>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Current Password</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Current Password</label>
                                 <input type="password" value={passwordForm.currentPassword} onChange={(e) => setPasswordForm({ ...passwordForm, currentPassword: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>New Password</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>New Password</label>
                                 <input type="password" value={passwordForm.newPassword} onChange={(e) => setPasswordForm({ ...passwordForm, newPassword: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Confirm Password</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Confirm Password</label>
                                 <input type="password" value={passwordForm.confirmPassword} onChange={(e) => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                         </div>
@@ -1139,23 +1139,23 @@ const VendorDashboard = () => {
                     <form onSubmit={handleBankDetailsSave}>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '15px' }}>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Account Holder Name</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Account Holder Name</label>
                                 <input type="text" value={bankForm.accountHolder} onChange={(e) => setBankForm({ ...bankForm, accountHolder: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Bank Name</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Bank Name</label>
                                 <input type="text" value={bankForm.bankName} onChange={(e) => setBankForm({ ...bankForm, bankName: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Account Number</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Account Number</label>
                                 <input type="text" value={bankForm.accountNumber} onChange={(e) => setBankForm({ ...bankForm, accountNumber: e.target.value })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>IFSC Code</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>IFSC Code</label>
                                 <input type="text" value={bankForm.ifscCode} onChange={(e) => setBankForm({ ...bankForm, ifscCode: e.target.value.toUpperCase() })} required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>UPI ID (Optional)</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>UPI ID (Optional)</label>
                                 <input type="text" value={bankForm.upiId} onChange={(e) => setBankForm({ ...bankForm, upiId: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                         </div>
@@ -1170,14 +1170,14 @@ const VendorDashboard = () => {
                     <form onSubmit={handlePayoutSettingsSave}>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '15px' }}>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Payout Method</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Payout Method</label>
                                 <select value={payoutForm.method} onChange={(e) => setPayoutForm({ ...payoutForm, method: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }}>
                                     <option value="bank_transfer">Bank Transfer</option>
                                     <option value="upi">UPI</option>
                                 </select>
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Payout Frequency</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Payout Frequency</label>
                                 <select value={payoutForm.frequency} onChange={(e) => setPayoutForm({ ...payoutForm, frequency: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }}>
                                     <option value="daily">Daily</option>
                                     <option value="weekly">Weekly</option>
@@ -1185,11 +1185,11 @@ const VendorDashboard = () => {
                                 </select>
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Minimum Payout Amount</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Minimum Payout Amount</label>
                                 <input type="number" min="0" value={payoutForm.minimumAmount} onChange={(e) => setPayoutForm({ ...payoutForm, minimumAmount: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Payout Day</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '700', color: '#1e293b' }}>Payout Day</label>
                                 <select value={payoutForm.payoutDay} onChange={(e) => setPayoutForm({ ...payoutForm, payoutDay: e.target.value })} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1' }}>
                                     <option value="monday">Monday</option>
                                     <option value="tuesday">Tuesday</option>

@@ -40,4 +40,12 @@ const authorize = (...roles) => {
     };
 };
 
-module.exports = { protect, authorize };
+const checkApproved = asyncHandler(async (req, res, next) => {
+    if (req.user.role === 'vendor' && req.user.vendorStatus !== 'approved') {
+        res.status(403);
+        throw new Error('Your vendor account is pending approval or has been rejected. Please contact support.');
+    }
+    next();
+});
+
+module.exports = { protect, authorize, checkApproved };

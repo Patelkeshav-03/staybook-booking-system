@@ -67,6 +67,16 @@ const CustomerDashboard = () => {
         }
     };
 
+    const handleAddToWishlist = async (hotelId) => {
+        try {
+            await api.post('/customer/wishlist', { hotelId });
+            alert('Added to wishlist!');
+            fetchDashboardData();
+        } catch (error) {
+            alert(error.response?.data?.message || 'Failed to add to wishlist');
+        }
+    };
+
     const fetchDashboardData = async () => {
         try {
             const { data } = await api.get('/customer/dashboard');
@@ -323,7 +333,7 @@ const CustomerDashboard = () => {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
                         {data.recommendations.map(hotel => (
                             <div key={hotel._id} style={{ background: 'white', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-                                <div style={{ height: '180px', background: '#e2e8f0', backgroundImage: `url(${hotel.images?.[0] || 'https://via.placeholder.com/300'})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                                <div style={{ height: '180px', background: '#e2e8f0', backgroundImage: `url(${hotel.imageUrls?.[0] || 'https://via.placeholder.com/300'})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                                     <div style={{ padding: '10px', display: 'flex', justifyContent: 'flex-end' }}>
                                         <span style={{ background: 'rgba(0,0,0,0.6)', color: '#fbbf24', padding: '4px 8px', borderRadius: '20px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                             <FaStar size={12} /> {hotel.rating || 'New'}
@@ -335,13 +345,32 @@ const CustomerDashboard = () => {
                                     <p style={{ color: '#64748b', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
                                         <FaMapMarkerAlt size={12} /> {hotel.location}
                                     </p>
-                                    <button
-                                        className="c-action-btn"
-                                        style={{ width: '100%', marginTop: '10px', textAlign: 'center' }}
-                                        onClick={() => window.location.href = `/hotels/${hotel._id}`}
-                                    >
-                                        View Details
-                                    </button>
+                                    <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                                        <button
+                                            className="c-action-btn"
+                                            style={{ flex: 4, textAlign: 'center' }}
+                                            onClick={() => setActiveTab('book-room')}
+                                        >
+                                            Book Now
+                                        </button>
+                                        <button
+                                            onClick={() => handleAddToWishlist(hotel._id)}
+                                            style={{
+                                                flex: 1,
+                                                background: data?.wishlist?.some(w => w._id === hotel._id) ? '#ef4444' : '#fef2f2',
+                                                color: data?.wishlist?.some(w => w._id === hotel._id) ? '#fff' : '#ef4444',
+                                                border: '1px solid #fee2e2',
+                                                borderRadius: '8px',
+                                                cursor: 'pointer',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}
+                                            title="Add to Wishlist"
+                                        >
+                                            <FaHeart />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -608,15 +637,15 @@ const CustomerDashboard = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px', marginTop: '20px' }}>
                     {data.wishlist.map(hotel => (
                         <div key={hotel._id} style={{ background: 'white', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-                            <div style={{ height: '200px', background: '#e2e8f0', backgroundImage: `url(${hotel.images?.[0] || 'https://via.placeholder.com/300'})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                            <div style={{ height: '200px', background: '#e2e8f0', backgroundImage: `url(${hotel.imageUrls?.[0] || 'https://via.placeholder.com/300'})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
                             <div style={{ padding: '20px' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '10px' }}>
-                                    <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#1e293b' }}>{hotel.name}</h3>
+                                    <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#1e293b', fontWeight: '800' }}>{hotel.name}</h3>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#fbbf24', fontWeight: 'bold' }}>
                                         <FaStar size={14} /> {hotel.rating || 'New'}
                                     </div>
                                 </div>
-                                <p style={{ color: '#64748b', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px', margin: '0 0 15px 0' }}>
+                                <p style={{ color: '#1e293b', fontSize: '0.95rem', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px', margin: '0 0 15px 0' }}>
                                     <FaMapMarkerAlt /> {hotel.location}
                                 </p>
                                 <div style={{ display: 'flex', gap: '10px' }}>
@@ -641,9 +670,9 @@ const CustomerDashboard = () => {
             ) : (
                 <div style={{ textAlign: 'center', padding: '50px', color: '#64748b' }}>
                     <FaHeart size={48} style={{ color: '#e2e8f0', marginBottom: '20px' }} />
-                    <h3>Your wishlist is empty</h3>
-                    <p>Save your favorite hotels here for easy access.</p>
-                    <button className="c-action-btn" style={{ marginTop: '20px' }} onClick={() => navigate('/')}>
+                    <h3 style={{ color: '#1e293b', fontWeight: '800' }}>Your wishlist is empty</h3>
+                    <p style={{ color: '#1e293b', fontWeight: '600' }}>Save your favorite hotels here for easy access.</p>
+                    <button className="c-action-btn" style={{ marginTop: '20px' }} onClick={() => setActiveTab('book-room')}>
                         Browse Hotels
                     </button>
                 </div>
@@ -658,7 +687,7 @@ const CustomerDashboard = () => {
                 <form onSubmit={handleBookingSubmit} style={{ display: 'grid', gap: '20px' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                         <div>
-                            <label style={{ display: 'block', marginBottom: '8px', color: '#64748b', fontWeight: '500' }}>Select Hotel</label>
+                            <label style={{ display: 'block', marginBottom: '8px', color: '#1e293b', fontWeight: '700' }}>Select Hotel</label>
                             <select
                                 value={bookingForm.hotelId}
                                 onChange={(e) => setBookingForm({ ...bookingForm, hotelId: e.target.value, roomId: '' })}
@@ -672,7 +701,7 @@ const CustomerDashboard = () => {
                             </select>
                         </div>
                         <div>
-                            <label style={{ display: 'block', marginBottom: '8px', color: '#64748b', fontWeight: '500' }}>Select Room Type</label>
+                            <label style={{ display: 'block', marginBottom: '8px', color: '#1e293b', fontWeight: '700' }}>Select Room Type</label>
                             <select
                                 value={bookingForm.roomId}
                                 onChange={(e) => setBookingForm({ ...bookingForm, roomId: e.target.value })}
@@ -692,7 +721,7 @@ const CustomerDashboard = () => {
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                         <div>
-                            <label style={{ display: 'block', marginBottom: '8px', color: '#64748b', fontWeight: '500' }}>Check-in Date</label>
+                            <label style={{ display: 'block', marginBottom: '8px', color: '#1e293b', fontWeight: '700' }}>Check-in Date</label>
                             <input
                                 type="date"
                                 value={bookingForm.checkInDate}
@@ -703,7 +732,7 @@ const CustomerDashboard = () => {
                             />
                         </div>
                         <div>
-                            <label style={{ display: 'block', marginBottom: '8px', color: '#64748b', fontWeight: '500' }}>Check-out Date</label>
+                            <label style={{ display: 'block', marginBottom: '8px', color: '#1e293b', fontWeight: '700' }}>Check-out Date</label>
                             <input
                                 type="date"
                                 value={bookingForm.checkOutDate}
@@ -715,14 +744,29 @@ const CustomerDashboard = () => {
                         </div>
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px', gap: '10px' }}>
+                        <button
+                            type="button"
+                            onClick={() => bookingForm.hotelId && handleAddToWishlist(bookingForm.hotelId)}
+                            className="c-action-btn"
+                            style={{
+                                padding: '12px 24px',
+                                background: '#fef2f2',
+                                color: '#ef4444',
+                                border: '1px solid #fee2e2',
+                                opacity: !bookingForm.hotelId ? 0.5 : 1
+                            }}
+                            disabled={!bookingForm.hotelId}
+                        >
+                            <FaHeart style={{ marginRight: '8px' }} /> Save to Wishlist
+                        </button>
                         <button
                             type="submit"
                             className="c-action-btn"
                             style={{ padding: '12px 24px', fontSize: '1rem', background: (!bookingForm.roomId || !bookingForm.checkInDate || !bookingForm.checkOutDate) ? '#cbd5e1' : undefined }}
                             disabled={!bookingForm.roomId || !bookingForm.checkInDate || !bookingForm.checkOutDate}
                         >
-                            Book Now
+                            Confirm Booking
                         </button>
                     </div>
                 </form>

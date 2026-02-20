@@ -3,14 +3,18 @@ const router = express.Router();
 const { getVendorStats, createHotel, updateHotel, deleteHotel } = require('../controllers/vendorController');
 const { getVendorBookings } = require('../controllers/bookingController');
 const { getVendorDashboard } = require('../controllers/dashboardController');
-const { protect, authorize } = require('../middleware/authMiddleware');
+const { protect, authorize, checkApproved } = require('../middleware/authMiddleware');
 
-router.get('/dashboard', protect, authorize('vendor'), getVendorDashboard);
-router.get('/stats', protect, authorize('vendor'), getVendorStats);
-router.get('/bookings', protect, authorize('vendor'), getVendorBookings);
+router.use(protect);
+router.use(authorize('vendor'));
+router.use(checkApproved);
 
-router.post('/hotels', protect, authorize('vendor'), createHotel);
-router.put('/hotels/:id', protect, authorize('vendor'), updateHotel);
-router.delete('/hotels/:id', protect, authorize('vendor'), deleteHotel);
+router.get('/dashboard', getVendorDashboard);
+router.get('/stats', getVendorStats);
+router.get('/bookings', getVendorBookings);
+
+router.post('/hotels', createHotel);
+router.put('/hotels/:id', updateHotel);
+router.delete('/hotels/:id', deleteHotel);
 
 module.exports = router;

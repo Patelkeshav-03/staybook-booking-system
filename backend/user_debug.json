@@ -1,0 +1,11 @@
+{
+  "_id": "6996b2133e7106d967545421",
+  "name": "keshav patil",
+  "email": "keshav@gmail.com",
+  "password": "$2b$10$QWg3f2.wIHmop2dfUCMIRuTzfEua39H.r5QTAOSrM7RD4WDLqD80y",
+  "role": "vendor",
+  "isBlocked": false,
+  "createdAt": "2026-02-19T06:47:47.359Z",
+  "updatedAt": "2026-02-19T06:47:47.359Z",
+  "__v": 0
+}

@@ -7,7 +7,8 @@ const User = require('../models/User');
 // @route   POST /api/auth/register
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password, role } = req.body;
+    let { name, email, password, role } = req.body;
+    email = email.toLowerCase().trim();
 
     if (!name || !email || !password) {
         res.status(400);
@@ -27,7 +28,8 @@ const registerUser = asyncHandler(async (req, res) => {
         name,
         email,
         password,
-        role: role || 'customer'
+        role: role || 'customer',
+        vendorStatus: role === 'vendor' ? 'pending' : 'none'
     });
 
     if (user) {
@@ -48,12 +50,23 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
+    email = email.toLowerCase().trim();
+    console.log(`Login attempt for email: ${email}`);
 
     // Check for user email
     const user = await User.findOne({ email }).select('+password');
 
-    if (user && (await user.matchPassword(password))) {
+    if (!user) {
+        console.log(`User not found for email: ${email}`);
+        res.status(400);
+        throw new Error('Invalid credentials');
+    }
+
+    const isMatch = await user.matchPassword(password);
+    console.log(`Password match for ${email}: ${isMatch}`);
+
+    if (isMatch) {
         res.json({
             _id: user.id,
             name: user.name,

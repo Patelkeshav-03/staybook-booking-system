@@ -24,12 +24,10 @@ const seedData = async () => {
         // Create Vendor
         let vendor = await User.findOne({ email: 'vendor@example.com' });
         if (!vendor) {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash('password123', salt);
             vendor = await User.create({
                 name: 'Main Vendor',
                 email: 'vendor@example.com',
-                password: hashedPassword, // hashing manually here as create might bypass pre-save if using insertMany, but create uses save
+                password: 'password123',
                 role: 'vendor'
             });
             console.log('Vendor created');

@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add an email'],
         unique: true,
+        trim: true,
         match: [
             /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             'Please add a valid email'
@@ -26,6 +27,21 @@ const userSchema = new mongoose.Schema({
         enum: ['customer', 'vendor', 'admin'],
         default: 'customer'
     },
+    wishlist: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Hotel'
+        }
+    ],
+    isBlocked: {
+        type: Boolean,
+        default: false
+    },
+    vendorStatus: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected', 'none'],
+        default: 'none'
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -35,15 +51,19 @@ const userSchema = new mongoose.Schema({
 // Encrypt password using bcrypt
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) {
-        next();
+        return next();
     }
 
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
 });
 
 // Match user entered password to hashed password in database
 userSchema.methods.matchPassword = async function (enteredPassword) {
+    if (!this.password) {
+        console.log('Error: password not selected in query');
+        return false;
+    }
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
